@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 # author: Timo Schmid <tschmid@ernw.de>
+# license: GPLv3
 
 from pyasn1.type import univ, namedtype, tag, namedval, base, useful
 from pyasn1_modules import rfc2459, rfc2437, rfc2560
