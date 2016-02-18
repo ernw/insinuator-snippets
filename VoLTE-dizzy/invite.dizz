@@ -1,0 +1,156 @@
+#SIP Invite
+#User already registered
+
+ip_dst = "192.168.56.103"
+ip_src = "192.168.56.101"
+port_src = "5060"
+#P-CSCF port number
+port_dst = "4060"
+impu_host = "alice"
+callee_host = "bob"
+domain = "open-ims.test"
+
+name = "SIP INVITE"
+
+objects = [
+#INVITE sip:bob@open-ims.test SIP/2.0
+   list("Method", "INVITE", "dizzes/sip/methods.txt"),
+   field("blank1", 8, " ", none),
+   field("prot1", 24, "sip", none),
+   field("sep1",8, ":", none),
+   field("calee1",None,callee_host,none) ,
+   field("sep76", 8, "@", none),
+   field("reqURI", None,domain,none),
+   field("blank2", 8, " ", none),
+   field("sip_version", 56, "SIP/2.0", none),
+   field("crlf1",16, "\x0d\x0a", none),
+# Call-ID: 080027d9-2ede0003-00001c04-00000403
+   field("name4", 56, "Call-ID", none),
+   field("sep12", 8, ":", none),
+   field("call_id", None, "578222729-4665d775", std),
+   field("crlf5", 16, "\x0d\x0a", none),
+#CSeq: 101 INVITE
+   field("name7", 32, "CSeq", none),
+   field("sep15", 8, ":", none),
+   field("blank6", 8, " ", none),
+   list("CSeq_num", "5", "dizzes/sip/integer.txt"), 
+   field("blank7", 8, " ", none),
+   list("method2", "INVITE", "dizzes/sip/methods.txt"),
+   field("crlf8", 16, "\x0d\x0a", none),
+#From: "Alice" <sip:alice@open-ims.test>;tag=1102
+   field("name2", 32, "From", none),
+   field("sep5", 8, ":", none),
+   field("blank5", 8, " ", none),
+   field("fromName", None, '"Alice"', none),
+   field("blank51", 8, " ", none),
+   field("lt1", 8, "<", none),
+   field("prot3", 24, "sip", none),
+   field("sep6", 8, ":", none),
+   field("impuHost", None, impu_host, std),
+   field("sep7", 8, "@", none),
+   field("domain", None, domain, none),
+   field("gt1", 8, ">", none),
+   field("sep8", 8, ";", none),
+   field("tag343", 24, "tag", none),
+   field("equal8", 8, "=", none),
+   field("tag2", None, "903df0a", std),
+   field("crlf3", 16, "\x0d\x0a", none),
+# To: <sip:bob@open-ims.test>
+   field("name3",16, "To", none),
+   field("sep9", 8, ":", none),
+   field("lt2", 8, "<", none),
+   field("prot4", 24, "sip", none),
+   field("sep10", 8, ":", none),
+   field("session_id2", None, callee_host, none),
+   field("sep11", 8, "@", none),
+   field("domainTo", None, domain, none),
+   field("gt2", 8, ">", none),
+   field("crlf4", 16, "\x0d\x0a", none),
+# Via: SIP/2.0/UDP 192.168.56.101:5060;branch=z9hG4bK00000241
+   field("via", 24, "Via", none),
+   field("sep2", 8, ":", none),
+   field("blank3", 8, " ", none),
+   field("prot2", 88, "SIP/2.0/UDP", none),
+   field("blank4", 8, " ", none),
+   list("ipViaList", ip_src, "dizzes/sip/faultyIP.txt"),
+   field("separator3", 8, ":", none),
+   field("port1", None, port_src, none),
+   field("sep3", 8, ";", none),
+   field("tag28", 48, "branch", none),
+   field("equal1", 8, "=", none),
+   field("branch" , None, "z9hG4bKnp151248737", std),
+   field("crlf2", 16, "\x0d\x0a", none),
+# Max-Forwards: 70
+   field("name5", 96, "Max-Forwards", none),
+   field("sep13", 8, ":", none),
+   list("max_forwards", "20", "dizzes/sip/integer.txt"),
+   field("crlf6", 16, "\x0d\x0a", none),
+# Route: <sip:orig@scscf.open-ims.test:6060;lr>
+   field("nameRoute", 40, "Route", none),
+   field("sepR1", 8, ":", none),
+   field("blankR1", 8, " ", none),
+   field("ltR1", 8, "<", none),
+   field("protR1", 24, "sip", none),
+   field("sepR2", 8, ":", none),
+   field("theWholeRoute",None,"orig@scscf.open-ims.test",std),
+   field("sepR3", 8, ":", none),
+   list("portR2", "6060", "dizzes/sip/integer.txt"),
+   field("sepR5", 8, ";", none),
+   field("lr", 16, "lr", none),
+   field("gtR3", 8, ">", none),
+   field("crlfRoute", 16, "\x0d\x0a", none),
+#Content-Type: application/sdp
+   field("nameCT", None, "Content-Type", none),
+   field("sepCT", 8, ":", none),
+   field("stringCT", None, "application/sdp", none),
+   field("crlfCT", 16, "\x0d\x0a", none),
+#Contact: <sip:alice@192.168.56.101:5060>
+   field("name9", 56, "Contact", none),
+   field("sep16", 8, ":", none),
+   field("blank8", 8, " ", none),
+   field("lt3", 8, "<", none),
+   field("prot5", 24, "sip", none),
+   field("sep17", 8, ":", none),
+   field("impuHostContact", None, impu_host, none),
+   field("sep18", 8, "@", none),
+   list("ipContList", ip_src, "dizzes/sip/faultyIP.txt"),
+   field("sep19", 8, ":", none),
+   list("contactPortList", port_src, "dizzes/sip/integer.txt"), 
+   field("sep20", 8, ";", none),
+   field("tag3", None, "line", none),
+   field("equal2", 8, "=", none),
+   field("tag4", None, "9c7d2db8822013c", none),
+   field("gt3", 8, ">", none),
+   field("crlf9", 16, "\x0d\x0a", none),
+#User-Agent: Cisco-SIPIPCommunicator/9.1.1
+   field("name8", 80, "User-Agent", none),
+   field("sep21", 8, ":", none),
+   field("string", None, "Cisco-SIPIPCommunicator", none),
+   field("sep23", 8, "/", none),
+   field("version", None, "9.1.1", none),
+   field("crlf10", 16, "\x0d\x0a", none),
+#Content-Length: 118
+   field("name10", None, "Content-Length", none),
+   field("sep22", 8, ":", none),
+   #field("string2", None, "118", none),
+   list("contLengthList", "118", "dizzes/sip/integer.txt"),
+   field("crlfContLength", 16, "\x0d\x0a", none),
+# Close Header with CRLF
+   field("crlf11", 16, "\x0d\x0a", none),
+#SDP
+   field("sdp1", 24, "v=0", none),
+   field("newLine1", 16, "\x0d\x0a", none),
+   field("sdp2", None, "o=user 0 0 IN IP4 127.0.1.1", none),
+   field("newLine2", 16, "\x0d\x0a", none),
+   field("sdp_S", None, "s=The funky IMS stream", none),
+   field("newLine13", 16, "\x0d\x0a", none),
+   field("sdp3", None, "c=IN IP4 192.168.56.101", none),
+   field("newLine3", 16, "\x0d\x0a", none),
+   field("sdp_t", None, "t=0 0", none),
+   field("newLine_t", 16, "\x0d\x0a", none),
+   field("sdp4", None, "m=audio 8000 RTP/AVP 0 3 8", none),
+   field("newLine4", 16, "\x0d\x0a", none),
+   #field("crlfFinal", 16, "\x0d\x0a", none),
+]
+
+functions=[]
