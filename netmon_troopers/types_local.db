@@ -1,0 +1,11 @@
+ipv4only		value:GAUGE:0:65535
+ipv6only		value:GAUGE:0:65535
+dualstack		value:GAUGE:0:65535
+wlan_clients	clients:GAUGE:0:65535
+clients			value:GAUGE:0:65535
+aps				value:GAUGE:0:65535
+dot11a			value:GAUGE:0:65535
+dot11b			value:GAUGE:0:65535
+dot11g			value:GAUGE:0:65535
+dot11n24		value:GAUGE:0:65535
+dot11n5			value:GAUGE:0:65535
