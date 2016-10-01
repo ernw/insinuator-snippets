@@ -1,8 +1,10 @@
 #!/bin/sh
 
 webex() {
-	FIREFOX_PATH="/opt/programs/firefox_x86" #Change this to actual path
+	FIREFOX_PATH="/opt/programs/firefox_x86" #Change this to actual path. Note that spaces should be escaped.
 	JRE_PATH="/opt/programs/jre_x86" #Change this to actual path
+	WEBEX_URL="https://signin.webex.com/collabs/auth" # initial signon page
+
 
 	if pgrep firefox > /dev/null; then
 		echo "[-] Firefox seems to be running. Please exit first";
@@ -19,7 +21,7 @@ webex() {
 		ln -s "${JRE_PATH}/lib/i386/libnpjp2.so" ~/.mozilla/plugins/;
 
 		echo "[+] Starting x86 firefox"
-		"${FIREFOX_PATH}/firefox";
+		${FIREFOX_PATH}/firefox -new-window ${WEBEX_URL};  
 
 		echo "[+] Removing link to x86 plugin"
 		rm -f ~/.mozilla/plugins/libnpjp2.so;
@@ -30,3 +32,5 @@ webex() {
 		fi
 	fi;
 }
+
+webex
