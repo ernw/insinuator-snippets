@@ -32,5 +32,3 @@ webex() {
 		fi
 	fi;
 }
-
-webex
