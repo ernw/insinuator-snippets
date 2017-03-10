@@ -43,8 +43,7 @@ def send_message(src,dest, string):
             destination_addr=dest,
             short_message=part,
             data_coding=encoding_flag,
-            #esm_class=msg_type_flag,
-            esm_class=smpplib.consts.SMPP_MSGMODE_FORWARD,
+            esm_class=msg_type_flag,
             registered_delivery=False,
     )
 
