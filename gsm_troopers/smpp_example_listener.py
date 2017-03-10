@@ -68,6 +68,6 @@ while True:
         break
     except KeyboardInterrupt:
         break
-    except:
-        logging.exception('Error during listen')
+    except Exception as e:
+        logging.exception('Error during listen' + str(e))
 
