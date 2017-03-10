@@ -12,8 +12,7 @@ import smpplib.consts
 # FOR QUESTIONS, PLS Contact Hendrik Schmidt, hschmidt@ernw.de             #
 ############################################################################
 
-
-_MYSERVICE=20001 #functional number of your service
+_MYSERVICE="20001" #functional number of your service
 
 #Enable Logging
 logging.basicConfig(filename="YourESME.log",level='DEBUG')
@@ -62,4 +61,14 @@ client.connect()
 client.bind_transceiver(system_id='YourESME', password='123456')
 print "MYSERVICE: Successfully bound SMPP"
 
-client.listen()
+
+
+while True:
+    try:
+        client.listen()
+        break
+    except KeyboardInterrupt:
+        break
+    except:
+        logging.exception('Error during listen')
+
